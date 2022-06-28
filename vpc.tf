@@ -13,8 +13,7 @@ provider "google" {
 
 # VPC
 resource "google_compute_network" "vpc" {
-  name                    = "project-go-vpc"
-  ip_cidr_range = "10.10.0.0/16"
+  name = "project-go-vpc"
   auto_create_subnetworks = "false"
 }
 

@@ -16,6 +16,10 @@ variable "gke_num_nodes" {
 variable "zone" {
  description = "zone"
 }
+
+variable "project_name" {
+  description = "project name"
+}
 # GKE cluster
 resource "google_container_cluster" "primary" {
   name     = "project-go-gke"
@@ -45,12 +49,12 @@ resource "google_container_node_pool" "primary_nodes" {
     ]
 
     labels = {
-      env = project-go
+      env = var.project_name
     }
 
     # preemptible  = true
     machine_type = "n1-standard-1"
-    tags         = ["gke-node", "project-go-gke"]
+    tags         = ["gke-node", "${var.project_name}-gke"]
     metadata = {
       disable-legacy-endpoints = "true"
     }
